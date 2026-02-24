@@ -107,7 +107,6 @@ export default function Footer() {
           <p className="text-gray-500 text-xs">
             © {new Date().getFullYear()} Inter Trans Logistics. All rights reserved.
           </p>
-          <p className="text-gray-600 text-xs">Designed with passion.</p>
         </div>
       </div>
     </footer>
