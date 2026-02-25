@@ -34,12 +34,12 @@ export default function HelpSection() {
         {/* CTA Buttons */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <button
-            className="px-7 py-3 rounded-full text-white text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95"
+            className="px-7 py-3 rounded-[10px] text-white text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95"
             style={{ backgroundColor: "var(--itl-blue)" }}
           >
             New or existing project
           </button>
-          <button className="px-7 py-3 rounded-full text-gray-700 text-sm font-semibold border border-gray-300 hover:border-blue-400 hover:text-blue-700 transition-all duration-200 active:scale-95">
+          <button className="px-7 py-3 rounded-[10px] text-gray-700 text-sm font-semibold border border-gray-300 hover:border-blue-400 hover:text-blue-700 transition-all duration-200 active:scale-95">
             General inquiry
           </button>
         </div>

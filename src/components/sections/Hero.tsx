@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background placeholder — swap with your actual image */}
-      <div className="absolute inset-0 img-placeholder">
-        {/* Replace this div with: <Image src="/images/hero.jpg" fill alt="hero" className="object-cover" /> */}
-      </div>
-
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+      <Image
+        src="/backgrounds/HeaderHomepage.webp"
+        fill
+        alt="ITL logistics hero"
+        className="object-cover"
+        priority
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
@@ -23,14 +24,14 @@ export default function Hero() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="px-6 py-3 rounded-full text-white text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95"
+              className="px-6 py-3 rounded-[10px] text-white text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95"
               style={{ backgroundColor: "var(--itl-blue)" }}
             >
               Talk to us today →
             </Link>
             <Link
               href="/about"
-              className="px-6 py-3 rounded-full text-white text-sm font-semibold border border-white/60 hover:bg-white/10 transition-all duration-200 active:scale-95"
+              className="px-6 py-3 rounded-[10px] text-white text-sm font-semibold border border-white/60 hover:bg-white/10 transition-all duration-200 active:scale-95"
             >
               Explore our services →
             </Link>

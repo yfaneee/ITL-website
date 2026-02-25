@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, Linkedin, MessageCircle } from "lucide-react";
 
 const quickLinks = [
@@ -15,8 +16,16 @@ const services = [
 
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: "var(--itl-dark)" }} className="text-white">
-      <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="relative text-white overflow-hidden">
+      <Image
+        src="/backgrounds/FooterBckg.webp"
+        fill
+        alt=""
+        className="object-cover"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0" style={{ backgroundColor: "var(--itl-dark)", opacity: 0 }} />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="md:col-span-1">
           <div className="flex items-center gap-3 mb-4">
@@ -102,7 +111,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-gray-800">
+      <div className="relative z-10 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="text-gray-500 text-xs">
             © {new Date().getFullYear()} Inter Trans Logistics. All rights reserved.
