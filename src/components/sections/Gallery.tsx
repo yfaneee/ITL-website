@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const galleryImages = [
-  { id: 1, alt: "Logistics photo 1", color: "from-slate-500 to-slate-700" },
-  { id: 2, alt: "Logistics photo 2", color: "from-red-700 to-red-900" },
-  { id: 3, alt: "Logistics photo 3", color: "from-emerald-700 to-emerald-900" },
+  { id: 1, src: "/images/SlideShowHome1.webp", alt: "ITL Logistics 1" },
+  { id: 2, src: "/images/SlideShowHome2.webp", alt: "ITL Logistics 2" },
+  { id: 3, src: "/images/SlideShowHome3.webp", alt: "ITL Logistics 3" },
+  { id: 4, src: "/images/SlideShowHome4.webp", alt: "ITL Logistics 4" },
 ];
 
 export default function Gallery() {
@@ -17,14 +19,16 @@ export default function Gallery() {
         {/* Images row */}
         <div className="relative flex items-center justify-center h-72 md:h-96">
           {galleryImages.map((img, idx) => {
-            const position = idx - galleryImages.findIndex((i) => i.id === active);
-            const isCenter = position === 0;
-            const isLeft = position === -1 || (active === 1 && idx === galleryImages.length - 1);
-            const isRight = position === 1 || (active === galleryImages.length && idx === 0);
+            const len = galleryImages.length;
+            const activeIdx = galleryImages.findIndex((i) => i.id === active);
+            const rel = ((idx - activeIdx) + len) % len;
+            const isCenter = rel === 0;
+            const isRight = rel === 1;
+            const isLeft = rel === len - 1;
 
-            let transform = "translateX(0) scale(1)";
-            let zIndex = 10;
-            let opacity = 1;
+            let transform = "translateX(0) scale(0.7)";
+            let zIndex = 5;
+            let opacity = 0;
 
             if (isCenter) {
               transform = "translateX(0) scale(1)";
@@ -38,26 +42,16 @@ export default function Gallery() {
               transform = "translateX(55%) scale(0.85)";
               zIndex = 10;
               opacity = 0.45;
-            } else {
-              transform = "translateX(0) scale(0.7)";
-              zIndex = 5;
-              opacity = 0;
             }
 
             return (
               <div
                 key={img.id}
                 onClick={() => setActive(img.id)}
-                className="absolute w-2/3 md:w-1/2 h-full rounded-2xl cursor-pointer transition-all duration-500 img-placeholder overflow-hidden"
-                style={{
-                  transform,
-                  zIndex,
-                  opacity,
-                  background: `linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to))`,
-                }}
+                className="absolute w-2/3 md:w-1/2 h-full rounded-2xl cursor-pointer transition-all duration-500 overflow-hidden"
+                style={{ transform, zIndex, opacity }}
               >
-                <div className={`w-full h-full bg-gradient-to-br ${img.color}`} />
-                {/* Replace with: <Image src={`/images/gallery-${img.id}.jpg`} fill alt={img.alt} className="object-cover" /> */}
+                <Image src={img.src} fill alt={img.alt} className="object-cover" />
               </div>
             );
           })}

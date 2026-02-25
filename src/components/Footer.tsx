@@ -112,8 +112,8 @@ export default function Footer() {
       </div>
 
       <div className="relative z-10 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-gray-500 text-xs">
+        <div className="max-w-7xl mx-auto px-6 py-6 pb-8 flex items-center justify-center">
+          <p className="text-gray-500 text-xs text-center">
             © {new Date().getFullYear()} Inter Trans Logistics. All rights reserved.
           </p>
         </div>
