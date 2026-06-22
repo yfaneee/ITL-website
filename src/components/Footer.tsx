@@ -29,12 +29,12 @@ export default function Footer() {
         {/* Brand */}
         <div className="md:col-span-1">
           <div className="flex items-center gap-3 mb-4">
-            <div
-              className="w-10 h-10 rounded flex items-center justify-center text-white font-bold text-sm"
-              style={{ backgroundColor: "var(--itl-blue)" }}
-            >
-              ITL
-            </div>
+            <Image
+              src="/icons/ITL_logo.svg"
+              alt="ITL logo"
+              width={60}
+              height={60}
+            />
           </div>
           <p className="text-gray-400 text-sm leading-relaxed">
             Delivering comprehensive logistics solutions across road, air, and sea with passion and precision.
