@@ -155,11 +155,11 @@ export default function ContactPage() {
         />
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
           <div className="max-w-xl">
-            <h1 className="text-3xl md:text-4xl lg:text-[2.6rem] text-white font-light leading-tight mb-4">
-              Get In Touch
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+              Get in touch with ITL
             </h1>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Our team is ready to help you find the right logistics solution. Reach out and we will get back to you promptly.
+            <p className="text-lg md:text-xl text-white max-w-2xl">
+            Tell us what need to move, and our team will help identify the right logistics solution based on route, cargo type and timing requirements.
             </p>
           </div>
         </div>

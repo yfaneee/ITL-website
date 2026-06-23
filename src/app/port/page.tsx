@@ -191,11 +191,11 @@ export default function PortPage() {
               <Image src="/icons/portOps.svg" width={28} height={28} alt="" />
               <span className="text-white text-xl font-semibold">Port Operations</span>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-[2.6rem] text-white font-light leading-tight mb-4">
-              Comprehensive port logistics solutions for global trade
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+              Port operations and inland logistics coordination
             </h1>
-            <p className="text-gray-300 text-sm mb-8">
-              Expert handling, Incoterms compliance, and end-to-end cargo management at every major port worldwide.
+            <p className="text-lg md:text-xl text-white mb-8 max-w-2xl">
+            ITL supports port-related cargo flows with practical coordination between documentation, port-side operations and inland transport.
             </p>
             <Link
               href="#quote"

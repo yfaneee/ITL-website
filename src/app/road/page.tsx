@@ -32,21 +32,19 @@ const serviceFeatures = [
   },
   {
     icon: "/icons/globalNet.svg",
-    title: "Global Network Coverage",
+    title: "EuropeanNetwork Coverage",
     items: [
       "15+ countries coverage",
       "Hubs and transits",
-      "Local expertise",
-      "Cross-border efficiency",
+      "Cross-border efficiency"
     ],
   },
   {
     icon: "/icons/industrySol.svg",
     title: "Industry-Specific Solutions",
     items: [
-      "Temperature-controlled food/beverage",
       "Sensitive cargo handling",
-      "Custom packaging",
+      "Local expertise"
     ],
   },
 ];
@@ -59,9 +57,11 @@ const europeanCoverage = [
 ];
 
 const asianCoverage = [
-  { region: "Central Asia", detail: "Land corridor connections" },
-  { region: "Middle East", detail: "Regional hubs and contracts" },
-  { region: "Western Asia", detail: "Multimodal partnerships" },
+  { region: "Black Sea", detail: "Related inland connections" },
+  { region: "Central European", detail: "Commercial routes" },
+  { region: "Western European", detail: "Delivery corridors" },
+  { region: "Turkey and Southeast Europe", detail: "Connected regional flows" },
+  { region: "Additional European routes", detail: "Depending on shipment requirements" },
 ];
 
 export default function RoadPage() {
@@ -122,11 +122,11 @@ export default function RoadPage() {
               />
               <span className="text-white text-xl font-semibold">Road Transport</span>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-[2.6rem] text-white font-light leading-tight mb-4">
-              Gain a competitive edge with flexible road transportation services
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+              Flexible road transport solutions across Europe
             </h1>
-            <p className="text-gray-300 text-sm mb-8">
-              Safe, on-time delivery across Europe, Asia and beyond.
+            <p className="text-lg md:text-xl text-white mb-8 max-w-2xl">
+            ITL supports road freight across key European corridors, with strength in cargo flows connected to the Black Sea region and wider Central and Western European routes.
             </p>
             <Link
               href="#quotation"
@@ -146,7 +146,7 @@ export default function RoadPage() {
             Are you looking for a trusted logistics partner that matches your ambitions and puts you first?
           </h2>
           <p className="text-gray-500 text-sm leading-relaxed">
-            From FTL to LTL and groupage services, shipping across Europe and Asia with expert planning and execution.
+            From FTL to LTL and groupage services, shipping across Europe with expert planning and execution.
           </p>
         </div>
       </section>
@@ -217,7 +217,6 @@ export default function RoadPage() {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-gray-900 mb-5">Asian Expansion</h3>
               <ul className="space-y-3">
                 {asianCoverage.map(({ region, detail }) => (
                   <li key={region} className="flex items-start gap-2 text-sm text-gray-600">

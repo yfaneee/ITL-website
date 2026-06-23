@@ -9,11 +9,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <HowCanWeHelp />
       <ServicesCards />
+      <HowCanWeHelp />
       <HelpSection />
-      <Gallery />
       <Testimonials />
+      <Gallery />
     </>
   );
 }

@@ -116,11 +116,11 @@ export default function AirPage() {
               <Image src="/icons/airTrans.svg" width={26} height={26} alt="" />
               <span className="text-white text-xl font-semibold">Air Transport</span>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-[2.6rem] text-white font-light leading-tight mb-4">
-              The competitive marketplace rewards a resilient supply chain.
+            <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-4">
+              Air transport solutions for urgent and time-sensitive shipments
             </h1>
-            <p className="text-gray-200 text-sm mb-8">
-              Unmatched freight solutions from thousands of airlines, to over 1&nbsp;000 cities worldwide.
+            <p className="text-lg md:text-xl text-white mb-8 max-w-2xl">
+            ITL provides responsive air freight coordination for cargo that requires speed, close communication and dependable handling.
             </p>
             <Link
               href="#quote"

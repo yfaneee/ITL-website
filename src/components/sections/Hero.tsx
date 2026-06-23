@@ -19,10 +19,10 @@ export default function Hero() {
             className="text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-5"
             style={{ fontWeight: 400 }}
           >
-            We deliver in every second, with passion.
+            Freight forwarding solutions across Europe.
           </h1>
           <p className="text-gray-200 text-base md:text-lg mb-8 leading-relaxed">
-            Because every piece matters, and every second counts. It takes a special kind of drive to keep the world moving.
+          Inter Trans Logistics, supports road transport, air transport and port operations with practical coordination, fast response and flexible logistics solutions.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
