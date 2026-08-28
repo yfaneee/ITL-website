@@ -2,55 +2,75 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, Linkedin, MessageCircle } from "lucide-react";
 
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact" },
-];
+import type { SiteSettings } from "@/content/site";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionary";
+import { localePath } from "@/i18n/navigation";
+import { imageUrl } from "@/sanity/image";
 
-const services = [
-  { href: "/road", label: "Road Transport" },
-  { href: "/air", label: "Air Transport" },
-  { href: "/port", label: "Port Operations" },
-];
+export default function Footer({
+  locale,
+  settings,
+}: {
+  locale: Locale;
+  settings: SiteSettings;
+}) {
+  const t = getDictionary(locale);
 
-export default function Footer() {
+  const quickLinks = [
+    { href: "/", label: t.footer.home },
+    { href: "/about", label: t.footer.about },
+    { href: "/contact", label: t.footer.contact },
+  ];
+
+  const services = [
+    { href: "/road", label: t.nav.road },
+    { href: "/air", label: t.nav.air },
+    { href: "/port", label: t.nav.port },
+  ];
+
+  const logo = imageUrl(settings.logo, { width: 120 });
+  const background = imageUrl(settings.footerBackground, { width: 1920 });
+
   return (
     <footer className="relative text-white overflow-hidden">
-      <Image
-        src="/backgrounds/FooterBckg.webp"
-        fill
-        alt=""
-        className="object-cover"
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0" style={{ backgroundColor: "var(--itl-dark)", opacity: 0 }} />
+      {background && (
+        <Image
+          src={background}
+          fill
+          alt=""
+          className="object-cover"
+          aria-hidden="true"
+        />
+      )}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div className="md:col-span-1">
-          <div className="flex items-center gap-3 mb-4">
-            <Image
-              src="/icons/ITL_logo.svg"
-              alt="ITL logo"
-              width={60}
-              height={60}
-            />
-          </div>
+          {logo && (
+            <div className="flex items-center gap-3 mb-4">
+              <Image
+                src={logo}
+                alt={settings.logo?.alt || `${settings.brandName} logo`}
+                width={60}
+                height={60}
+              />
+            </div>
+          )}
           <p className="text-gray-400 text-sm leading-relaxed">
-            Delivering comprehensive logistics solutions across road, air, and sea with passion and precision.
+            {settings.footerBlurb}
           </p>
         </div>
 
         {/* Quick Links */}
         <div>
           <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">
-            Quick Links
+            {t.footer.quickLinks}
           </h4>
           <ul className="space-y-2">
             {quickLinks.map((link) => (
               <li key={link.href}>
                 <Link
-                  href={link.href}
+                  href={localePath(locale, link.href)}
                   className="text-gray-400 hover:text-white text-sm transition-colors"
                 >
                   {link.label}
@@ -63,13 +83,13 @@ export default function Footer() {
         {/* Services */}
         <div>
           <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">
-            Services
+            {t.footer.services}
           </h4>
           <ul className="space-y-2">
             {services.map((link) => (
               <li key={link.href}>
                 <Link
-                  href={link.href}
+                  href={localePath(locale, link.href)}
                   className="text-gray-400 hover:text-white text-sm transition-colors"
                 >
                   {link.label}
@@ -82,31 +102,52 @@ export default function Footer() {
         {/* Get In Touch */}
         <div>
           <h4 className="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">
-            Get In Touch
+            {t.footer.getInTouch}
           </h4>
           <ul className="space-y-3">
-            <li className="flex items-center gap-3 text-gray-400 text-sm">
-              <Phone size={15} className="text-blue-400 shrink-0" />
-              <span>+1 (234) 567-8900</span>
-            </li>
-            <li className="flex items-center gap-3 text-gray-400 text-sm">
-              <Mail size={15} className="text-blue-400 shrink-0" />
-              <a href="mailto:info@itl.com" className="hover:text-white transition-colors">
-                info@itl.com
-              </a>
-            </li>
-            <li className="flex items-center gap-3 text-gray-400 text-sm">
-              <MessageCircle size={15} className="text-blue-400 shrink-0" />
-              <a href="https://wa.me/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
-                WhatsApp
-              </a>
-            </li>
-            <li className="flex items-center gap-3 text-gray-400 text-sm">
-              <Linkedin size={15} className="text-blue-400 shrink-0" />
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">
-                LinkedIn
-              </a>
-            </li>
+            {settings.phone && (
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
+                <Phone size={15} className="text-blue-400 shrink-0" />
+                <span>{settings.phone}</span>
+              </li>
+            )}
+            {settings.email && (
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
+                <Mail size={15} className="text-blue-400 shrink-0" />
+                <a
+                  href={`mailto:${settings.email}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {settings.email}
+                </a>
+              </li>
+            )}
+            {settings.whatsappUrl && (
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
+                <MessageCircle size={15} className="text-blue-400 shrink-0" />
+                <a
+                  href={settings.whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {t.footer.whatsapp}
+                </a>
+              </li>
+            )}
+            {settings.linkedinUrl && (
+              <li className="flex items-center gap-3 text-gray-400 text-sm">
+                <Linkedin size={15} className="text-blue-400 shrink-0" />
+                <a
+                  href={settings.linkedinUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {t.footer.linkedin}
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -114,7 +155,7 @@ export default function Footer() {
       <div className="relative z-10 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-6 pb-8 flex items-center justify-center">
           <p className="text-gray-500 text-xs text-center">
-            © {new Date().getFullYear()} Inter Trans Logistics. All rights reserved.
+            © {new Date().getFullYear()} {settings.brandName}. {t.footer.rights}
           </p>
         </div>
       </div>

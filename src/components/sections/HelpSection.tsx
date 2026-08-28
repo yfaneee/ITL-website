@@ -1,34 +1,52 @@
 import { Phone, Mail, MessageCircle, Linkedin } from "lucide-react";
 
-const contactItems = [
-  {
-    icon: <Phone size={22} />,
-    label: "Telephone",
-    href: "tel:+12345678900",
-  },
-  {
-    icon: <Mail size={22} />,
-    label: "Email",
-    href: "mailto:info@itl.com",
-  },
-  {
-    icon: <MessageCircle size={22} />,
-    label: "WhatsApp",
-    href: "https://wa.me/",
-  },
-  {
-    icon: <Linkedin size={22} />,
-    label: "LinkedIn",
-    href: "https://linkedin.com",
-  },
-];
+import type { SiteSettings } from "@/content/site";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionary";
 
-export default function HelpSection() {
+export default function HelpSection({
+  heading,
+  primaryLabel,
+  secondaryLabel,
+  settings,
+  locale,
+}: {
+  heading: string;
+  primaryLabel: string;
+  secondaryLabel: string;
+  settings: SiteSettings;
+  locale: Locale;
+}) {
+  const t = getDictionary(locale);
+
+  const contactItems = [
+    settings.phone && {
+      icon: <Phone size={22} />,
+      label: t.footer.telephone,
+      href: `tel:${settings.phone.replace(/[^+\d]/g, "")}`,
+    },
+    settings.email && {
+      icon: <Mail size={22} />,
+      label: t.form.email,
+      href: `mailto:${settings.email}`,
+    },
+    settings.whatsappUrl && {
+      icon: <MessageCircle size={22} />,
+      label: t.footer.whatsapp,
+      href: settings.whatsappUrl,
+    },
+    settings.linkedinUrl && {
+      icon: <Linkedin size={22} />,
+      label: t.footer.linkedin,
+      href: settings.linkedinUrl,
+    },
+  ].filter(Boolean) as { icon: React.ReactNode; label: string; href: string }[];
+
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
-          What do you need help with?
+          {heading}
         </h2>
 
         {/* CTA Buttons */}
@@ -37,10 +55,10 @@ export default function HelpSection() {
             className="px-7 py-3 rounded-[10px] text-white text-sm font-semibold transition-all duration-200 hover:brightness-110 active:scale-95"
             style={{ backgroundColor: "var(--itl-blue)" }}
           >
-            New or existing project
+            {primaryLabel}
           </button>
           <button className="px-7 py-3 rounded-[10px] text-gray-700 text-sm font-semibold border border-gray-300 hover:border-blue-400 hover:text-blue-700 transition-all duration-200 active:scale-95">
-            General inquiry
+            {secondaryLabel}
           </button>
         </div>
 

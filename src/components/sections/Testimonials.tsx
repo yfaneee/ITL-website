@@ -3,46 +3,37 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const testimonials = [
-  {
-    id: 1,
-    initials: "AG",
-    quote:
-      "Inter Trans Logistics has been our trusted partner for over 5 years. Their reliability and commitment to excellence is unmatched.",
-    name: "AGC Equipment",
-    title: "Automotive Sector",
-  },
-  {
-    id: 2,
-    initials: "MR",
-    quote:
-      "Outstanding service from start to finish. ITL handled our complex shipping requirements with professionalism and efficiency.",
-    name: "MR Industries",
-    title: "Oil & Gas Sector",
-  },
-  {
-    id: 3,
-    initials: "CB",
-    quote:
-      "We've worked with many logistics companies but ITL stands out for their attention to detail and on-time delivery.",
-    name: "CB Constructions",
-    title: "Construction Sector",
-  },
-];
+import type { Testimonial } from "@/content/testimonials";
+import type { Locale } from "@/i18n/config";
+import { localePath } from "@/i18n/navigation";
 
-export default function Testimonials() {
+export default function Testimonials({
+  heading,
+  subheading,
+  linkLabel,
+  testimonials,
+  locale,
+}: {
+  heading: string;
+  subheading: string;
+  linkLabel: string;
+  testimonials: Testimonial[];
+  locale: Locale;
+}) {
   const [active, setActive] = useState(0);
-  const t = testimonials[active];
+
+  if (testimonials.length === 0) return null;
+  const t = testimonials[Math.min(active, testimonials.length - 1)];
 
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-3xl mx-auto text-center">
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-          Trusted by industry leaders
+          {heading}
         </h2>
         <p className="text-gray-500 text-sm mb-12 tracking-wide uppercase">
-          Delivering excellence across sectors
+          {subheading}
         </p>
 
         {/* Testimonial card */}
@@ -61,32 +52,36 @@ export default function Testimonials() {
 
           <div>
             <p className="font-bold text-gray-900 text-sm">{t.name}</p>
-            <p className="text-gray-400 text-xs mt-0.5">{t.title}</p>
+            <p className="text-gray-400 text-xs mt-0.5">{t.sector}</p>
           </div>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mb-8">
-          {testimonials.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActive(idx)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                active === idx ? "scale-125" : "bg-gray-300 hover:bg-gray-400"
-              }`}
-              style={active === idx ? { backgroundColor: "var(--itl-blue)" } : {}}
-              aria-label={`Testimonial ${idx + 1}`}
-            />
-          ))}
-        </div>
+        {testimonials.length > 1 && (
+          <div className="flex justify-center gap-2 mb-8">
+            {testimonials.map((item, idx) => (
+              <button
+                key={item._id ?? item.name}
+                onClick={() => setActive(idx)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  active === idx ? "scale-125" : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                style={active === idx ? { backgroundColor: "var(--itl-blue)" } : {}}
+                aria-label={item.name}
+              />
+            ))}
+          </div>
+        )}
 
-        <Link
-          href="/about"
-          className="text-sm font-semibold transition-colors duration-200 hover:underline"
-          style={{ color: "var(--itl-blue)" }}
-        >
-          View all testimonials →
-        </Link>
+        {linkLabel && (
+          <Link
+            href={localePath(locale, "/about")}
+            className="text-sm font-semibold transition-colors duration-200 hover:underline"
+            style={{ color: "var(--itl-blue)" }}
+          >
+            {linkLabel}
+          </Link>
+        )}
       </div>
     </section>
   );
