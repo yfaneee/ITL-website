@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Sanity Studio is a browser-only app that pulls in packages (swr) which
-  // expose no server entry point. Keeping it external stops the RSC graph
-  // from trying to resolve it under the "react-server" condition.
-  serverExternalPackages: ["sanity"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "cdn.sanity.io", pathname: "/**" },
