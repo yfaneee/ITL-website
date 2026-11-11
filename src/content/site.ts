@@ -30,10 +30,10 @@ export const siteSettingsSeed = {
   ),
   logo: img("/icons/ITL_logo.svg", "ITL logo", "Sigla ITL"),
   footerBackground: img("/backgrounds/FooterBckg.webp", "", ""),
-  phone: "+373 22 123 456",
-  email: "info@itl.com",
+  phone: "0746462929",
+  email: "transport@itl.ro",
   whatsappUrl: "https://wa.me/",
-  linkedinUrl: "https://linkedin.com",
+  linkedinUrl: "https://www.linkedin.com/company/inter-trans-logistics-by-holleman-group/posts/?feedView=all",
 };
 
 export function getSiteSettings(locale: Locale) {
